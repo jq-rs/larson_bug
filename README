@@ -1,0 +1,23 @@
+/usr/bin/c++ -w -O3 -Wno-unused-result -std=gnu++17 -o larson.cpp.o -c larson.cpp
+/usr/bin/c++ -w -O3 -DNDEBUG -rdynamic larson.cpp.o -o larson -lpthread -ljemalloc
+./larson 5 8 1000 5000 100 4141 40
+Segmentation fault (core dumped)
+
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7d64540 in bitmap_unset (binfo=<optimized out>, bit=<optimized out>, bitmap=<optimized out>) at include/jemalloc/internal/bitmap.h:344
+344             *gp = g;
+(gdb) bt
+#0  0x00007ffff7d64540 in bitmap_unset (binfo=<optimized out>, bit=<optimized out>, bitmap=<optimized out>) at include/jemalloc/internal/bitmap.h:344
+#1  arena_dalloc_bin_locked_step (ptr=<optimized out>, slab=<optimized out>, binind=<optimized out>, info=<synthetic pointer>, bin=<optimized out>, arena=<optimized out>, tsdn=0x7ffffffe8960) at include/jemalloc/internal/arena_inlines_b.h:514
+#2  tcache_bin_flush_impl (small=true, rem=<optimized out>, binind=0, cache_bin=<optimized out>, tcache=<optimized out>, tsd=0x7ffffffe8960) at src/tcache.c:449
+#3  je_tcache_bin_flush_small (tsd=tsd@entry=0x7ffff778b748, tcache=<optimized out>, cache_bin=<optimized out>, binind=binind@entry=17, rem=<optimized out>) at src/tcache.c:511
+#4  0x00007ffff7cf738c in tcache_dalloc_small (slow_path=false, binind=17, ptr=0x7ffff2878dc0, tcache=<optimized out>, tsd=<optimized out>) at include/jemalloc/internal/tcache_inlines.h:137
+#5  arena_sdalloc (slow_path=<optimized out>, caller_alloc_ctx=<optimized out>, tcache=<optimized out>, size=<optimized out>, ptr=<optimized out>, tsdn=<optimized out>) at include/jemalloc/internal/arena_inlines_b.h:417
+#6  isdalloct (slow_path=<optimized out>, alloc_ctx=<optimized out>, tcache=<optimized out>, size=<optimized out>, ptr=<optimized out>, tsdn=<optimized out>) at include/jemalloc/internal/jemalloc_internal_inlines_c.h:133
+#7  isfree (slow_path=false, tcache=<optimized out>, usize=<optimized out>, ptr=0x7ffff2878dc0, tsd=<optimized out>) at src/jemalloc.c:2841
+#8  je_sdallocx_default (ptr=0x7ffff2878dc0, size=<optimized out>, flags=<optimized out>) at src/jemalloc.c:3736
+#9  0x0000555555556232 in runthreads(long, int, int, int, int) ()
+#10 0x000055555555545d in main ()
+
