@@ -1,5 +1,5 @@
 /usr/bin/c++ -w -O3 -Wno-unused-result -std=gnu++17 -o larson.cpp.o -c larson.cpp
-/usr/bin/c++ -w -O3 -DNDEBUG -rdynamic larson.cpp.o -o larson -lpthread -ljemalloc
+/usr/bin/c++ -w -O3 -rdynamic larson.cpp.o -o larson -lpthread -ljemalloc
 ./larson 5 8 1000 5000 100 4141 40
 Segmentation fault (core dumped)
 
