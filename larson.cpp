@@ -134,22 +134,22 @@ void operator delete[](void *pUserData )
 #endif
 
 /* JEMALLOC TEST CODE BEGIN */
-static int layout_to_flags(size_t align, size_t size) {
-    if(align <= 8 && align <= size)
-       return 0;
-    return MALLOCX_ALIGN(align);
+//static int layout_to_flags(size_t align, size_t size) {
+//    if(align <= 8 && align <= size)
+//       return 0;
+//    return MALLOCX_ALIGN(align);
+//}
+
+static inline void * sized_malloc(size_t size)
+{
+  return mallocx(size, 0);
+  //return malloc(size);
 }
 
-static void * sized_malloc(size_t size)
+static inline void sized_free(void *ptr, size_t size)
 {
-  const int flags = layout_to_flags(8, size);
-  return mallocx(size, flags);
-}
-
-static void sized_free(void *ptr, size_t size)
-{
-  const int flags = layout_to_flags(8, size);
-  sdallocx(ptr, size, flags);
+  sdallocx(ptr, size, 0);
+  //free(ptr);
 }
 /* JEMALLOC TEST CODE END */
 
@@ -662,6 +662,7 @@ static void warmup(char **blkp, int num_chunks )
   int     victim ;
   int     blk_size ;
   LPVOID  tmp ;
+  size_t  tmp_sz;
 
 
   for( cblks=0; cblks<num_chunks; cblks++){
@@ -683,8 +684,11 @@ static void warmup(char **blkp, int num_chunks )
   for( cblks=num_chunks; cblks > 0 ; cblks--){
     victim = lran2(&rgen)%cblks ;
     tmp = blkp[victim] ;
+    tmp_sz = blksize[victim];
     blkp[victim]  = blkp[cblks-1] ;
+    blksize[victim] = blksize[cblks-1];
     blkp[cblks-1] = (char *) tmp ;
+    blksize[cblks-1] = tmp_sz;
   }
 
   for( cblks=0; cblks<4*num_chunks; cblks++){
