@@ -2,7 +2,9 @@
 /usr/bin/c++ -w -O3 -rdynamic larson.cpp.o -o larson -lpthread -ljemalloc
 ./larson 5 8 1000 5000 100 4141 40
 
-Performance results:
+Performance results
+
+Jemalloc comparison (malloc, sdallocx/free, -ljemalloc)
 Relative time (smaller is better):
 sdallocx (dev), n=10: 2.6773, stddev 0.095249439
 free (dev), n=10: 2.8577, stddev 0.019448
