@@ -4,9 +4,9 @@
 
 Performance results:
 Relative time (smaller is better):
-sdallocx (dev), n=10: 2.9557, stddev 0.020477901
+sdallocx (dev), n=10: 2.6773, stddev 0.095249439
 free (dev), n=10: 2.8577, stddev 0.019448
-sdallocx (5.2.1), n=10: 3.1222, stddev 0.017357675
+sdallocx (5.2.1), n=10: 2.9049, stddev 0.025856226
 free (5.2.1), n=10: 2.9007, stddev 0.0190616
 
 Mimalloc comparison (mi_malloc, mi_free/mi_free_size calls, -lmimalloc)

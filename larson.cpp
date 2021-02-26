@@ -142,8 +142,8 @@ void operator delete[](void *pUserData )
 
 static inline void * sized_malloc(size_t size)
 {
-  return mallocx(size, 0);
-  //return malloc(size);
+  //return mallocx(size, 0);
+  return malloc(size);
 }
 
 static inline void sized_free(void *ptr, size_t size)
