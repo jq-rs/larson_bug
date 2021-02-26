@@ -1,4 +1,4 @@
-# larson test for sized allocation
+# larson test for sized deallocation
 
 Simple test modifications for sized deallocations.
 
