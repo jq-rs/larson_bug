@@ -1,8 +1,6 @@
 # larson test for sized deallocation
 
-Simple test modifications for sized deallocations.
-
-Sized deallocations have fast path on some allocators. This may make significant number of application calls to have a size information as part of a deallocation call. Therefore, it may be worth for any allocator to tune sized deallocation to be as fast as possible, in addition to libc-malloc/free paths.
+Simple test modifications for sized deallocations as they have a fast path on some allocators. 
 
 Original test [here](https://github.com/daanx/mimalloc-bench/tree/master/bench/larson)
 
