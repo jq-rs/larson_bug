@@ -4,7 +4,7 @@
 
 Performance results
 
-Jemalloc comparison (malloc, sdallocx/free, -ljemalloc)
+Jemalloc comparison (malloc, sdallocx/free, -ljemalloc, 73ca4b8ef81d2a54970804182c010b8c95a93587)
 Relative time (smaller is better):
 sdallocx (dev), n=10: 2.6773, stddev 0.095249439
 free (dev), n=10: 2.8577, stddev 0.019448
