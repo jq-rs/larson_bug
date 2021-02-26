@@ -29,7 +29,7 @@
 #include <pthread.h>
 #endif
 /* FOR JEMALLOC */
-#include <jemalloc/jemalloc.h>
+#include <mimalloc/mimalloc.h>
 
 typedef void * LPVOID;
 typedef long long LONGLONG;
@@ -142,13 +142,14 @@ void operator delete[](void *pUserData )
 
 static inline void * sized_malloc(size_t size)
 {
-  return mallocx(size, 0);
+  return mi_malloc(size);
   //return malloc(size);
 }
 
 static inline void sized_free(void *ptr, size_t size)
 {
-  sdallocx(ptr, size, 0);
+  //sdallocx(ptr, size, 0);
+  mi_free_size(ptr, size);
   //free(ptr);
 }
 /* JEMALLOC TEST CODE END */

@@ -8,3 +8,7 @@ sdallocx (dev), n=10: 2.9557, stddev 0.020477901
 free (dev), n=10: 2.8577, stddev 0.019448
 sdallocx (5.2.1), n=10: 3.1222, stddev 0.017357675
 free (5.2.1), n=10: 2.9007, stddev 0.0190616
+
+Mimalloc comparison (mi_malloc, mi_free/mi_free_size calls, -lmimalloc)
+mimalloc free (1.7), n=10: 2.8483, stddev 0.034098061
+mimalloc sized free (1.7), n=10: 2.8702, stddev 0.023322855
